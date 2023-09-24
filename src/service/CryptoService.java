@@ -76,11 +76,13 @@ public class CryptoService {
                     }
                 }
                 for (int j = 0; j < line.length() - 1; j++) {
-                    if (line.charAt(j + 1) == ' ' && line.charAt(j) == ',' || line.charAt(j) == '!'
+                    if (line.charAt(j) == ',' || line.charAt(j) == '!'
                             || line.charAt(j) == ':' || line.charAt(j) == ';' || line.charAt(j) == '?') {
-                        goodCounter++;
-                    } else {
-                        badCounter++;
+                        if (line.charAt(j + 1) == ' ') {
+                            goodCounter++;
+                        } else {
+                            badCounter++;
+                        }
                     }
                 }
             }
