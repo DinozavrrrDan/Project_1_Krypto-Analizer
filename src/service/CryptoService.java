@@ -1,83 +1,66 @@
 package service;
 
-import exceptions.SystemFileException;
-import validarors.FileValidator;
 import validarors.InputValidator;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static constants.Consts.ALPHABET;
+
 public class CryptoService {
-    private final FileService fileService = new FileService();
-    private final InputValidator inputValidator = new InputValidator();
-    public static final List<Character> alphabet = new ArrayList<>(Arrays.asList('A', 'a', 'B', 'b', 'C', 'c', 'D', 'd',
-            'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h',
-            'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l',
-            'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p',
-            'Q', 'q', 'R', 'r', 'S', 's', 'T', 't',
-            'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x',
-            'Y', 'y', 'Z', 'z', ' ', '.', ',', '?',
-            '!'));
+    private final FileService fileService;
+    private final ConsoleService consoleService;
+
+    public CryptoService(FileService fileService, ConsoleService consoleService) {
+        this.fileService = fileService;
+        this.consoleService = consoleService;
+    }
 
     /**
-     *
      * Зашифровывает текст
-     *
-     * @param input
-     * @throws IOException
      */
-    public void encrypt(Scanner input) throws IOException {
-        List<String> lines = fileService.readFile(input);
-        String outputFile = fileService.needFile(input);
-        int shift = inputValidator.validateChoise(input);
+    public void encrypt() throws IOException {
+        List<String> lines = fileService.readFile();
+        String outputFile = fileService.checkOutputFile();
+        int shift = consoleService.readIntegersFromConsole();
         for (String line : lines) {
             String newLine = sypher(line, shift);
-            fileService.writeToFile(outputFile, newLine, false);
+            fileService.writeToFile(outputFile, newLine);
         }
     }
 
     /**
-     *
      * Расшифровывает текст
-     *
-     * @param input
-     * @throws IOException
      */
-    public void decrypt(Scanner input) throws IOException {
-        List<String> lines = fileService.readFile(input);
-        String outputFile = fileService.needFile(input);
-        int shift = inputValidator.validateChoise(input);
+    public void decrypt() throws IOException {
+        List<String> lines = fileService.readFile();
+        String outputFile = fileService.checkOutputFile();
+        int shift = consoleService.readIntegersFromConsole();
         for (String line : lines) {
             String newLine = sypher(line, -shift);
-            fileService.writeToFile(outputFile, newLine, false);
+            fileService.writeToFile(outputFile, newLine);
         }
     }
 
-    public void bruteForce(Scanner input) {
-
+    public void bruteForce() {
+        /*
+         */
     }
 
-    public void statistics(Scanner input) {
+    public void statistics() {
 
     }
 
     /**
-     *
      * Процесс, который изменяет текст
-     *
-     * @param originalStr
-     * @param shift
-     * @return
      */
     private String sypher(String originalStr, int shift) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < originalStr.length(); i++) {
-            int originalCharIndex = alphabet.indexOf(originalStr.charAt(i));
-            int resultCharIndex = (alphabet.size() + originalCharIndex + shift) % alphabet.size();
-            result.append(alphabet.get(resultCharIndex));
+            int originalCharIndex = ALPHABET.indexOf(originalStr.charAt(i));
+            int resultCharIndex = (ALPHABET.size() + originalCharIndex + shift) % ALPHABET.size();
+            result.append(ALPHABET.get(resultCharIndex));
         }
         return result.toString();
     }

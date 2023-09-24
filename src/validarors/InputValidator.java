@@ -3,9 +3,9 @@ package validarors;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class InputValidator {
+import static constants.Errors.BAD_VALUE_MESSAGE;
 
-    public static final String BAD_VALUE_MESSAGE = "PLease enter correct number! Between 0 and 4. Your value: ";
+public class InputValidator {
 
     public static final int DEFAULT_VALUE = -1;
 

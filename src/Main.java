@@ -1,8 +1,8 @@
+import service.ConsoleService;
 import service.CryptoService;
-import validarors.InputValidator;
+import service.FileService;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import static constants.Consts.MAIN_MENU;
 import static constants.Consts.EXTRA_INFORMATION;
@@ -11,28 +11,26 @@ import static constants.Consts.CLOSING_PROGRAM;
 
 public class Main {
 
-
     public static void main(String[] args) throws IOException {
-        InputValidator inputValidator = new InputValidator();
-        CryptoService cryptoService = new CryptoService();
-
-        Scanner input = new Scanner(System.in);
+        ConsoleService consoleService = new ConsoleService();
+        FileService fileService = new FileService(consoleService);
+        CryptoService cryptoService = new CryptoService(fileService, consoleService);
 
         while (true) {
             System.out.println(MAIN_MENU);
-            int userChoise = inputValidator.validateChoise(input);
+            int userChoise = consoleService.readIntegersFromConsole();
             if (userChoise == 0) {
                 exitProgram();
             } else if (userChoise == 1) {
                 System.out.println(EXTRA_INFORMATION);
-                cryptoService.encrypt(input);
+                cryptoService.encrypt();
             } else if (userChoise == 2) {
                 System.out.println(EXTRA_INFORMATION);
-                cryptoService.decrypt(input);
+                cryptoService.decrypt();
             } else if (userChoise == 3) {
-                cryptoService.bruteForce(input);
+                cryptoService.bruteForce();
             } else if (userChoise == 4) {
-                cryptoService.statistics(input);
+                cryptoService.statistics();
             } else {
                 System.out.println(NOT_VALID_MENU_OPTION);
             }
