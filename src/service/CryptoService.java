@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static constants.Consts.ALPHABET;
+import static constants.Consts.ENTER_SHIFT;
 
 public class CryptoService {
     private final FileService fileService;
@@ -23,6 +24,7 @@ public class CryptoService {
     public void encrypt() throws IOException {
         List<String> lines = fileService.readFile();
         String outputFile = fileService.checkOutputFile();
+        System.out.println("Enter shift: ");
         int shift = consoleService.readIntegersFromConsole();
         for (String line : lines) {
             String newLine = sypher(line, shift);
@@ -36,6 +38,7 @@ public class CryptoService {
     public void decrypt() throws IOException {
         List<String> lines = fileService.readFile();
         String outputFile = fileService.checkOutputFile();
+        System.out.println(ENTER_SHIFT);
         int shift = consoleService.readIntegersFromConsole();
         for (String line : lines) {
             String newLine = sypher(line, -shift);

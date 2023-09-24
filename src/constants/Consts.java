@@ -15,13 +15,13 @@ public class Consts {
     public static final String OUTPUT_FILE_MENU = """
             Do you need to create file?
             1 - Yes
-            Other - No
-            """;
+            Other - No """;
     public static final String EXTRA_INFORMATION = "Please enter source file, output file and shift!";
     public static final String NOT_VALID_MENU_OPTION = "This is not a valid Menu option! Select another!";
     public static final String CLOSING_PROGRAM = "Closing program...";
     public static final String ENTER_NEW_FILE_NAME = "Enter new file name: ";
     public static final String ENTER_FILE_NAME = "Enter file name: ";
+    public static final String ENTER_SHIFT = "Enter shift: ";
     public static final List<String> NOT_VALID_FILES = List.of(
             //Linux system files
             ".bash_profile",
