@@ -1,15 +1,18 @@
 package service;
 
-import validarors.InputValidator;
+import exceptions.BruteForceException;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 import static constants.Consts.ALPHABET;
+import static constants.Consts.BRUTE_FORCE_COMPLETE;
+import static constants.Consts.BRUTE_FORCE_WRONG;
 import static constants.Consts.ENTER_SHIFT;
+import static constants.Consts.WORDS_FOR_BRUTE_FORCE;
 
 public class CryptoService {
+
     private final FileService fileService;
     private final ConsoleService consoleService;
 
@@ -24,12 +27,9 @@ public class CryptoService {
     public void encrypt() throws IOException {
         List<String> lines = fileService.readFile();
         String outputFile = fileService.checkOutputFile();
-        System.out.println("Enter shift: ");
+        System.out.println(ENTER_SHIFT);
         int shift = consoleService.readIntegersFromConsole();
-        for (String line : lines) {
-            String newLine = sypher(line, shift);
-            fileService.writeToFile(outputFile, newLine);
-        }
+        process(lines, outputFile, shift);
     }
 
     /**
@@ -40,19 +40,81 @@ public class CryptoService {
         String outputFile = fileService.checkOutputFile();
         System.out.println(ENTER_SHIFT);
         int shift = consoleService.readIntegersFromConsole();
-        for (String line : lines) {
-            String newLine = sypher(line, -shift);
-            fileService.writeToFile(outputFile, newLine);
-        }
+        process(lines, outputFile, -shift);
     }
 
-    public void bruteForce() {
-        /*
-         */
+    public void bruteForce() throws IOException {
+        List<String> lines = fileService.readFile();
+        String outputFile = fileService.checkOutputFile();
+        bruteForceProcess(lines, outputFile);
     }
 
     public void statistics() {
 
+    }
+
+    private void bruteForceProcess(List<String> lines, String outputFile) throws IOException {
+        if (bruteForceWordsFrequency(lines, outputFile) || bruteForceSpaceAfterSign(lines, outputFile)) {
+            return;
+        }
+        throw new BruteForceException(BRUTE_FORCE_WRONG);
+    }
+
+    private boolean bruteForceSpaceAfterSign(List<String> lines, String outputFile) throws IOException {
+        int goodCounter = 0;
+        int badCounter = 0;
+        for (int i = 1; i < ALPHABET.size(); i++) {
+            process(lines, outputFile, -i);
+            for (String line : lines) {
+                if (line.contains(". ") || line.contains(", ") || line.contains("! ")
+                        || line.contains(": ") || line.contains("; ") || line.contains("? ")) {
+                    goodCounter++;
+                } else {
+                    badCounter++;
+                }
+            }
+            if (isBruteForceDone(goodCounter, badCounter)) {
+                System.out.println(BRUTE_FORCE_COMPLETE + i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean bruteForceWordsFrequency(List<String> lines, String outputFile) throws IOException {
+        int goodCounter = 0;
+        int badCounter = 0;
+        for (int i = 1; i < ALPHABET.size(); i++) {
+            process(lines, outputFile, -i);
+            for (String line : lines) {
+                for (String s : WORDS_FOR_BRUTE_FORCE) {
+                    if (line.toLowerCase().contains(s)) {
+                        goodCounter++;
+                    } else {
+                        badCounter++;
+                    }
+                }
+            }
+            if (isBruteForceDone(goodCounter, badCounter)) {
+                System.out.println(BRUTE_FORCE_COMPLETE + i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isBruteForceDone(int goodCounter, int badCounter) {
+        return goodCounter > badCounter * 2;
+    }
+
+    /**
+     * Шифровка/Дешифровка и запись в файл
+     */
+    private void process(List<String> lines, String outputFile, int shift) throws IOException {
+        for (String line : lines) {
+            String newLine = sypher(line, shift);
+            fileService.writeToFile(outputFile, newLine);
+        }
     }
 
     /**

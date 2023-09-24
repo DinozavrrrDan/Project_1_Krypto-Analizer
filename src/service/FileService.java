@@ -14,7 +14,7 @@ import static constants.Consts.OUTPUT_FILE_MENU;
 import static constants.Errors.BAD_FILE;
 
 public class FileService {
-    public static final String NEED_TO_CREATE_FILE_FLAG = "1";
+    private static final String NEED_TO_CREATE_FILE_FLAG = "1";
     private final FileValidator fileValidator = new FileValidator();
     private final ConsoleService consoleService;
 
@@ -50,7 +50,7 @@ public class FileService {
             System.out.println(ENTER_NEW_FILE_NAME);
             file = Files.createFile(Path.of(consoleService.readFromConsole())).toString();
         } else {
-            System.out.println(ENTER_NEW_FILE_NAME);
+            System.out.println(ENTER_FILE_NAME);
             file = consoleService.readFromConsole();
             if (fileValidator.isSystemFile(Path.of(file))) {
                 throw new SystemFileException(BAD_FILE);

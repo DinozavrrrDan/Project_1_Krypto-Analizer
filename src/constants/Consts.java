@@ -9,7 +9,8 @@ public class Consts {
             CryptoAnalyzer menu:
             1 - Create cypher (encrypt)
             2 - Unmake cypher (decrypt)
-            3 - BruteForce4 - Statistics
+            3 - BruteForce
+            4 - Statistics
             0 - exit program
             Please enter a number : """;
     public static final String OUTPUT_FILE_MENU = """
@@ -22,6 +23,15 @@ public class Consts {
     public static final String ENTER_NEW_FILE_NAME = "Enter new file name: ";
     public static final String ENTER_FILE_NAME = "Enter file name: ";
     public static final String ENTER_SHIFT = "Enter shift: ";
+    public static final String BRUTE_FORCE_WRONG = "Brute force wrong!";
+    public static final String BRUTE_FORCE_COMPLETE = "Brute force complete: shift is ";
+    public static final String[] WORDS_FOR_BRUTE_FORCE = {
+            "you ", "to ", "the ", "and ", "that ", "it ", "of ", "me ", "what ",
+            "in ", "this ", "know ", "for ", "no ", "not ", "do ", "be ", "been ",
+            "on ", "your ", "was ", "we ", "with ", "so ", "but ", "all ", "well ",
+            "he ", "about ", "right ", "get ", "here ", "out ", "like ", "yeah ", "if ",
+            "her ", "she ", "can ", "up ", "want ", "think ", "now ", "go ", "him ", "at "
+    };
     public static final List<String> NOT_VALID_FILES = List.of(
             //Linux system files
             ".bash_profile",
@@ -39,7 +49,7 @@ public class Consts {
             ".xinitrc",
             ".xsession"
             //Windows system files
-             );
+    );
     public static final List<Character> ALPHABET = new ArrayList<>(Arrays.asList('A', 'a', 'B', 'b', 'C', 'c', 'D', 'd',
             'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h',
             'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l',
@@ -47,7 +57,7 @@ public class Consts {
             'Q', 'q', 'R', 'r', 'S', 's', 'T', 't',
             'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x',
             'Y', 'y', 'Z', 'z', ' ', '.', ',', '?',
-            '!'));
+            '!', ';', ':', '\''));
 
     private Consts() {
     }
