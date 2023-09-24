@@ -9,6 +9,9 @@ public class InputValidator {
 
     public static final int DEFAULT_VALUE = -1;
 
+    /**
+     * Проверяет являться ли введенная строка числом
+     */
     public int validateChoise(Scanner input) {
         try {
             return input.nextInt();

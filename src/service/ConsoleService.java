@@ -13,10 +13,16 @@ public class ConsoleService {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Читает строку из консоли
+     */
     public String readFromConsole(){
         return scanner.nextLine();
     }
 
+    /**
+     * Читает следующие число (int) из консоли
+     */
     public int readIntegersFromConsole(){
         return inputValidator.validateChoise(scanner);
     }

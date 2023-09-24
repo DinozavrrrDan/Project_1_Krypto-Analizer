@@ -43,6 +43,9 @@ public class FileService {
             Files.writeString(Path.of(file), writeStr);
     }
 
+    /**
+     * Создание / проверка файла для записи
+     */
     public String checkOutputFile() throws IOException {
         System.out.println(OUTPUT_FILE_MENU);
         String file;

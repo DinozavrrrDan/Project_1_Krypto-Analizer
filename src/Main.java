@@ -15,26 +15,28 @@ public class Main {
         ConsoleService consoleService = new ConsoleService();
         FileService fileService = new FileService(consoleService);
         CryptoService cryptoService = new CryptoService(fileService, consoleService);
-
         while (true) {
-            System.out.println(MAIN_MENU);
-            int userChoise = consoleService.readIntegersFromConsole();
-            if (userChoise == 0) {
-                exitProgram();
-            } else if (userChoise == 1) {
-                System.out.println(EXTRA_INFORMATION);
-                cryptoService.encrypt();
-            } else if (userChoise == 2) {
-                System.out.println(EXTRA_INFORMATION);
-                cryptoService.decrypt();
-            } else if (userChoise == 3) {
-                cryptoService.bruteForce();
-            } else if (userChoise == 4) {
-                cryptoService.statistics();
-            } else {
-                System.out.println(NOT_VALID_MENU_OPTION);
-            }
+            validateUserChoise(consoleService, cryptoService);
+        }
+    }
 
+    private static void validateUserChoise(ConsoleService consoleService, CryptoService cryptoService) throws IOException {
+        System.out.println(MAIN_MENU);
+        int userChoise = consoleService.readIntegersFromConsole();
+        if (userChoise == 0) {
+            exitProgram();
+        } else if (userChoise == 1) {
+            System.out.println(EXTRA_INFORMATION);
+            cryptoService.encrypt();
+        } else if (userChoise == 2) {
+            System.out.println(EXTRA_INFORMATION);
+            cryptoService.decrypt();
+        } else if (userChoise == 3) {
+            cryptoService.bruteForce();
+        } else if (userChoise == 4) {
+            cryptoService.statistics();
+        } else {
+            System.out.println(NOT_VALID_MENU_OPTION);
         }
     }
 

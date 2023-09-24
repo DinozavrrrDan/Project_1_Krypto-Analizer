@@ -43,6 +43,9 @@ public class CryptoService {
         process(lines, outputFile, -shift);
     }
 
+    /**
+     * Реализует алгоритм BruteForce
+     */
     public void bruteForce() throws IOException {
         List<String> lines = fileService.readFile();
         String outputFile = fileService.checkOutputFile();
@@ -53,6 +56,9 @@ public class CryptoService {
 
     }
 
+    /**
+     * Реализует расшифровку brute force, иначе кидает исключение
+     */
     private void bruteForceProcess(List<String> lines, String outputFile) throws IOException {
         if (bruteForceWordsFrequency(lines, outputFile) || bruteForceSpaceAfterSign(lines, outputFile)) {
             return;
@@ -60,6 +66,9 @@ public class CryptoService {
         throw new BruteForceException(BRUTE_FORCE_WRONG);
     }
 
+    /**
+     * Проверка с помощью свойства: после знака идет пробел
+     */
     private boolean bruteForceSpaceAfterSign(List<String> lines, String outputFile) throws IOException {
         int goodCounter = 0;
         int badCounter = 0;
@@ -81,6 +90,9 @@ public class CryptoService {
         return false;
     }
 
+    /**
+     *  Проверка с помощью свойства: частота слов
+     */
     private boolean bruteForceWordsFrequency(List<String> lines, String outputFile) throws IOException {
         int goodCounter = 0;
         int badCounter = 0;
