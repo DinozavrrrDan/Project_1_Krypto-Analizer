@@ -1,5 +1,7 @@
 package constants;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Consts {
@@ -10,9 +12,16 @@ public class Consts {
             3 - BruteForce4 - Statistics
             0 - exit program
             Please enter a number : """;
+    public static final String OUTPUT_FILE_MENU = """
+            Do you need to create file?
+            1 - Yes
+            Other - No
+            """;
     public static final String EXTRA_INFORMATION = "Please enter source file, output file and shift!";
     public static final String NOT_VALID_MENU_OPTION = "This is not a valid Menu option! Select another!";
     public static final String CLOSING_PROGRAM = "Closing program...";
+    public static final String ENTER_NEW_FILE_NAME = "Enter new file name: ";
+    public static final String ENTER_FILE_NAME = "Enter file name: ";
     public static final List<String> NOT_VALID_FILES = List.of(
             //Linux system files
             ".bash_profile",
@@ -31,6 +40,14 @@ public class Consts {
             ".xsession"
             //Windows system files
              );
+    public static final List<Character> ALPHABET = new ArrayList<>(Arrays.asList('A', 'a', 'B', 'b', 'C', 'c', 'D', 'd',
+            'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h',
+            'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l',
+            'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p',
+            'Q', 'q', 'R', 'r', 'S', 's', 'T', 't',
+            'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x',
+            'Y', 'y', 'Z', 'z', ' ', '.', ',', '?',
+            '!'));
 
     private Consts() {
     }
