@@ -19,7 +19,8 @@ public class CryptoService {
             'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p',
             'Q', 'q', 'R', 'r', 'S', 's', 'T', 't',
             'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x',
-            'Y', 'y', 'Z', 'z'));
+            'Y', 'y', 'Z', 'z', ' ', '.', ',', '?',
+            '!'));
 
     public void encrypt(Scanner input) throws IOException {
         List<String> lines = fileService.readFile(input);
@@ -54,7 +55,7 @@ public class CryptoService {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < originalStr.length(); i++) {
             int originalCharIndex = alphabet.indexOf(originalStr.charAt(i));
-            int resultCharIndex = (alphabet.size() + originalCharIndex + shift * 2) % alphabet.size();
+            int resultCharIndex = (alphabet.size() + originalCharIndex + shift) % alphabet.size();
             result.append(alphabet.get(resultCharIndex));
         }
         return result.toString();

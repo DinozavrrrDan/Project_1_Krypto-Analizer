@@ -24,8 +24,10 @@ public class Main {
             if (userChoise == 0) {
                 exitProgram();
             } else if (userChoise == 1) {
+                System.out.println("Please enter source file, output file and shift!");
                 cryptoService.encrypt(input);
             } else if (userChoise == 2) {
+                System.out.println("Please enter source file, output file and shift!");
                 cryptoService.decrypt(input);
             } else if (userChoise == 3) {
                 cryptoService.bruteForce(input);
