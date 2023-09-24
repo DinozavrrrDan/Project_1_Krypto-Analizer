@@ -63,40 +63,6 @@ public class CryptoService {
      * Реализует расшифровку brute force, иначе кидает исключение
      */
     private void bruteForceProcess(List<String> lines, String outputFile) throws IOException {
-        if (bruteForceWordsFrequency(lines, outputFile) || bruteForceSpaceAfterSign(lines, outputFile)) {
-            return;
-        }
-        throw new BruteForceException(BRUTE_FORCE_WRONG);
-    }
-
-    /**
-     * Проверка с помощью свойства: после знака идет пробел
-     */
-    private boolean bruteForceSpaceAfterSign(List<String> lines, String outputFile) throws IOException {
-        int goodCounter = 0;
-        int badCounter = 0;
-        for (int i = 1; i < ALPHABET.size(); i++) {
-            process(lines, outputFile, -i);
-            for (String line : lines) {
-                if (line.contains(". ") || line.contains(", ") || line.contains("! ")
-                        || line.contains(": ") || line.contains("; ") || line.contains("? ")) {
-                    goodCounter++;
-                } else {
-                    badCounter++;
-                }
-            }
-            if (isBruteForceDone(goodCounter, badCounter)) {
-                System.out.println(BRUTE_FORCE_COMPLETE + i);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     *  Проверка с помощью свойства: частота слов
-     */
-    private boolean bruteForceWordsFrequency(List<String> lines, String outputFile) throws IOException {
         int goodCounter = 0;
         int badCounter = 0;
         for (int i = 1; i < ALPHABET.size(); i++) {
@@ -109,13 +75,19 @@ public class CryptoService {
                         badCounter++;
                     }
                 }
+                if (line.contains(". ") || line.contains(", ") || line.contains("! ")
+                        || line.contains(": ") || line.contains("; ") || line.contains("? ")) {
+                    goodCounter++;
+                } else {
+                    badCounter++;
+                }
             }
             if (isBruteForceDone(goodCounter, badCounter)) {
                 System.out.println(BRUTE_FORCE_COMPLETE + i);
-                return true;
+                return;
             }
         }
-        return false;
+        throw new BruteForceException(BRUTE_FORCE_WRONG);
     }
 
     private static boolean isBruteForceDone(int goodCounter, int badCounter) {
