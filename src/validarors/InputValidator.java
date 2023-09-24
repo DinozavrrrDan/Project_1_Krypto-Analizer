@@ -7,7 +7,7 @@ import static constants.Errors.BAD_VALUE_MESSAGE;
 
 public class InputValidator {
 
-    public static final int DEFAULT_VALUE = -1;
+    private static final int DEFAULT_VALUE = -1;
 
     /**
      * Проверяет являться ли введенная строка числом

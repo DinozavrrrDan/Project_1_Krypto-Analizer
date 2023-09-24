@@ -25,9 +25,9 @@ public class Main {
         if (userChoose == 0) {
             exitProgram();
         } else if (userChoose == 1) {
-            cryptoService.encrypt();
+            cryptoService.crypteProcess(false);
         } else if (userChoose == 2) {
-            cryptoService.decrypt();
+            cryptoService.crypteProcess(true);
         } else if (userChoose == 3) {
             cryptoService.bruteForce();
         } else if (userChoose == 4) {

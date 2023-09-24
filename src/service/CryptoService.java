@@ -23,27 +23,15 @@ public class CryptoService {
     }
 
     /**
-     * Зашифровывает текст
+     * Зашифровывает или расшифровывает текст в зависимости от флага
      */
-    public void encrypt() throws IOException {
+    public void crypteProcess(boolean decryptFlag) throws IOException {
         System.out.println(EXTRA_INFORMATION);
         List<String> lines = fileService.readFile();
         String outputFile = fileService.checkOutputFile();
         System.out.println(ENTER_SHIFT);
         int shift = consoleService.readIntegersFromConsole();
-        process(lines, outputFile, shift);
-    }
-
-    /**
-     * Расшифровывает текст
-     */
-    public void decrypt() throws IOException {
-        System.out.println(EXTRA_INFORMATION);
-        List<String> lines = fileService.readFile();
-        String outputFile = fileService.checkOutputFile();
-        System.out.println(ENTER_SHIFT);
-        int shift = consoleService.readIntegersFromConsole();
-        process(lines, outputFile, -shift);
+        process(lines, outputFile, decryptFlag ? -shift : shift);
     }
 
     /**
