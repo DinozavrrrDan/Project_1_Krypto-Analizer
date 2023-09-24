@@ -75,11 +75,13 @@ public class CryptoService {
                         badCounter++;
                     }
                 }
-                if (line.contains(". ") || line.contains(", ") || line.contains("! ")
-                        || line.contains(": ") || line.contains("; ") || line.contains("? ")) {
-                    goodCounter++;
-                } else {
-                    badCounter++;
+                for (int j = 0; j < line.length() - 1; j++) {
+                    if (line.charAt(j + 1) == ' ' && line.charAt(j) == ',' || line.charAt(j) == '!'
+                            || line.charAt(j) == ':' || line.charAt(j) == ';' || line.charAt(j) == '?') {
+                        goodCounter++;
+                    } else {
+                        badCounter++;
+                    }
                 }
             }
             if (isBruteForceDone(goodCounter, badCounter)) {
