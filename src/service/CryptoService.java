@@ -22,6 +22,13 @@ public class CryptoService {
             'Y', 'y', 'Z', 'z', ' ', '.', ',', '?',
             '!'));
 
+    /**
+     *
+     * Зашифровывает текст
+     *
+     * @param input
+     * @throws IOException
+     */
     public void encrypt(Scanner input) throws IOException {
         List<String> lines = fileService.readFile(input);
         String outputFile = fileService.needFile(input);
@@ -30,9 +37,15 @@ public class CryptoService {
             String newLine = sypher(line, shift);
             fileService.writeToFile(outputFile, newLine, false);
         }
-
     }
 
+    /**
+     *
+     * Расшифровывает текст
+     *
+     * @param input
+     * @throws IOException
+     */
     public void decrypt(Scanner input) throws IOException {
         List<String> lines = fileService.readFile(input);
         String outputFile = fileService.needFile(input);
@@ -51,6 +64,14 @@ public class CryptoService {
 
     }
 
+    /**
+     *
+     * Процесс, который изменяет текст
+     *
+     * @param originalStr
+     * @param shift
+     * @return
+     */
     private String sypher(String originalStr, int shift) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < originalStr.length(); i++) {
