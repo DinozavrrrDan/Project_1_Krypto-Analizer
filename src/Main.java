@@ -5,7 +5,6 @@ import service.FileService;
 import java.io.IOException;
 
 import static constants.Consts.MAIN_MENU;
-import static constants.Consts.EXTRA_INFORMATION;
 import static constants.Consts.NOT_VALID_MENU_OPTION;
 import static constants.Consts.CLOSING_PROGRAM;
 
@@ -16,24 +15,22 @@ public class Main {
         FileService fileService = new FileService(consoleService);
         CryptoService cryptoService = new CryptoService(fileService, consoleService);
         while (true) {
-            validateUserChoise(consoleService, cryptoService);
+            validateUserChoose(consoleService, cryptoService);
         }
     }
 
-    private static void validateUserChoise(ConsoleService consoleService, CryptoService cryptoService) throws IOException {
+    private static void validateUserChoose(ConsoleService consoleService, CryptoService cryptoService) throws IOException {
         System.out.println(MAIN_MENU);
-        int userChoise = consoleService.readIntegersFromConsole();
-        if (userChoise == 0) {
+        int userChoose = consoleService.readIntegersFromConsole();
+        if (userChoose == 0) {
             exitProgram();
-        } else if (userChoise == 1) {
-            System.out.println(EXTRA_INFORMATION);
+        } else if (userChoose == 1) {
             cryptoService.encrypt();
-        } else if (userChoise == 2) {
-            System.out.println(EXTRA_INFORMATION);
+        } else if (userChoose == 2) {
             cryptoService.decrypt();
-        } else if (userChoise == 3) {
+        } else if (userChoose == 3) {
             cryptoService.bruteForce();
-        } else if (userChoise == 4) {
+        } else if (userChoose == 4) {
             cryptoService.statistics();
         } else {
             System.out.println(NOT_VALID_MENU_OPTION);

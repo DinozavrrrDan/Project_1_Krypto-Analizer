@@ -9,6 +9,7 @@ import static constants.Consts.ALPHABET;
 import static constants.Consts.BRUTE_FORCE_COMPLETE;
 import static constants.Consts.BRUTE_FORCE_WRONG;
 import static constants.Consts.ENTER_SHIFT;
+import static constants.Consts.EXTRA_INFORMATION;
 import static constants.Consts.WORDS_FOR_BRUTE_FORCE;
 
 public class CryptoService {
@@ -25,6 +26,7 @@ public class CryptoService {
      * Зашифровывает текст
      */
     public void encrypt() throws IOException {
+        System.out.println(EXTRA_INFORMATION);
         List<String> lines = fileService.readFile();
         String outputFile = fileService.checkOutputFile();
         System.out.println(ENTER_SHIFT);
@@ -36,6 +38,7 @@ public class CryptoService {
      * Расшифровывает текст
      */
     public void decrypt() throws IOException {
+        System.out.println(EXTRA_INFORMATION);
         List<String> lines = fileService.readFile();
         String outputFile = fileService.checkOutputFile();
         System.out.println(ENTER_SHIFT);
