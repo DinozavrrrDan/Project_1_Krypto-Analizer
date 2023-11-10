@@ -10,7 +10,6 @@ public class Consts {
             1 - Create cypher (encrypt)
             2 - Unmake cypher (decrypt)
             3 - BruteForce
-            4 - Statistics
             0 - exit program
             Please enter a number : """;
     public static final String OUTPUT_FILE_MENU = """

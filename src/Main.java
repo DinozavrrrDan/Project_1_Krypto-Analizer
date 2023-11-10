@@ -30,8 +30,6 @@ public class Main {
             cryptoService.crypteProcess(true);
         } else if (userChoose == 3) {
             cryptoService.bruteForce();
-        } else if (userChoose == 4) {
-            cryptoService.statistics();
         } else {
             System.out.println(NOT_VALID_MENU_OPTION);
         }

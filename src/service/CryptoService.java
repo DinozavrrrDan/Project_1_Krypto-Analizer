@@ -43,10 +43,6 @@ public class CryptoService {
         bruteForceProcess(lines, outputFile);
     }
 
-    public void statistics() {
-
-    }
-
     /**
      * Реализует расшифровку brute force, иначе кидает исключение
      */
